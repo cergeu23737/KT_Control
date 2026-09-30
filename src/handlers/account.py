@@ -1,5 +1,5 @@
 from telegram import Update
-from telegram.ext import ContextTypes
+from telegram.ext import CommandHandler, ContextTypes
 
 from accounts import create_account
 
@@ -14,3 +14,7 @@ async def account(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"{kt_id}\n\n"
         "аккаунт KT prod создан."
     )
+
+
+def register(app):
+    app.add_handler(CommandHandler("account", account))
