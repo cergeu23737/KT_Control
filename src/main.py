@@ -1,13 +1,8 @@
-from telegram.ext import (
-    Application,
-    CommandHandler,
-)
+from telegram.ext import Application
 
 from config import BOT_TOKEN, APP_NAME, VERSION
 from database import init_db
-
-from handlers.account import account
-from handlers.profile import profile
+from handler_loader import load_handlers
 
 
 def main():
@@ -18,8 +13,7 @@ def main():
 
     app = Application.builder().token(BOT_TOKEN).build()
 
-    app.add_handler(CommandHandler("account", account))
-    app.add_handler(CommandHandler("profile", profile))
+    load_handlers(app)
 
     print(f"{APP_NAME} {VERSION} запущен.")
 
