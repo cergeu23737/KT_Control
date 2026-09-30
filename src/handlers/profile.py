@@ -1,5 +1,5 @@
 from telegram import Update
-from telegram.ext import ContextTypes
+from telegram.ext import CommandHandler, ContextTypes
 
 from database import get_connection
 
@@ -35,3 +35,7 @@ async def profile(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"👤 роль: {role}\n"
         f"📅 создан: {created_at}"
     )
+
+
+def register(app):
+    app.add_handler(CommandHandler("profile", profile))
